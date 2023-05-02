@@ -5,9 +5,14 @@ from sklearn.linear_model import LinearRegression
 
 DATA_URL = "https://www.kaggle.com/datasets/imrulhasanrobi/world-population-all-countries-different-parameter"
 PATH_TO_DATA = "world_population.csv"
+GITHUB_URL = "https://github.com/rajinsyed/Capstone-Project"
+DEPLOYED_URL = "https://rajinsyed-capstone-project-main-lep1nx.streamlit.app/"
 
-st.title("World Population")
+st.title("World Population Analysis")
 
+st.write("---")
+
+# caching the data
 @st.cache_data 
 def get_population():
     return pd.read_csv(PATH_TO_DATA)
@@ -222,7 +227,6 @@ X = data[features]
 y = data["Population(2020)"]
 model = LinearRegression().fit(X, y)
 
-
 # Predict the population in X years in the future (The dataset's population is from 2020)
 prediction_year = 10
 
@@ -235,8 +239,6 @@ for i in range(prediction_year):
     future_X = [[future_yearly_change, future_net_change]]
     future_population_increase = model.predict(future_X)[0] * (i + 1)
     future_population = total_world_population + future_population_increase
-
-
 
     # append the future population to the list
     future_population_list.append(future_population)
