@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import altair as alt
 from sklearn.linear_model import LinearRegression
 
@@ -18,7 +17,7 @@ data = get_population()
 data['Population(2020)'] = data['Population(2020)'].str.replace(',', '').astype(int)
 
 # Replace 'N.A.' values with NaN
-data = data.replace('N.A.', np.nan)
+data = data.replace('N.A.', pd.NA)
 
 # -------------------------- pie chart ------------------------------
 # What's the total population in this world? 
