@@ -3,8 +3,6 @@ import pandas as pd
 import numpy as np
 import altair as alt
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
 
 DATA_URL = "https://www.kaggle.com/datasets/imrulhasanrobi/world-population-all-countries-different-parameter"
 PATH_TO_DATA = "world_population.csv"
@@ -71,7 +69,7 @@ st.write(f"This pie chart shows the distribution of the world's population. The 
 st.write('-----')
 
 # -------------------------- bar chart ------------------------------
-# Which regions have the highest population? Bar chart
+#   Bar chart
 
 # Group the data by regions and sum the population for each region
 df_regions = data.groupby("Regions")["Population(2020)"].sum().reset_index()
@@ -239,6 +237,8 @@ for i in range(prediction_year):
     future_population_increase = model.predict(future_X)[0] * (i + 1)
     future_population = total_world_population + future_population_increase
 
+
+
     # append the future population to the list
     future_population_list.append(future_population)
 
@@ -272,3 +272,4 @@ st.altair_chart(chart)
 # Description
 st.write("### Description")
 st.write("This visualization shows the predicted world population from 2020 to 2030 using a linear regression model based on the data from the dataset. The predicted population takes into account the yearly change and net change of the world population. The bar chart shows the world population on the y-axis and the year on the x-axis. The blue bar represents the actual population in 2020 (the metrics in the dataset was of 2020), while the orange bars represent the predicted population from 2021 to 2030. Hovering over the bars displays the year and the corresponding population in the tooltip. This visualization provides insights into the future world population trend based on the current data.")
+
